@@ -1,0 +1,23 @@
+.input {
+  display: flex;
+  flex-direction: column;
+
+  &_label {
+    text-align: left;
+    text-transform: capitalize;
+    font-family: Martel;
+    font-size: 14px;
+  }
+
+  &_field {
+    border: 1px solid #504c4c;
+    height: 45px;
+    border-radius: 5px;
+    padding-inline: 15px;
+    outline: none;
+
+    &:focus {
+      box-shadow: 0 0 0 2px #555d6674, 0 0 0 5px rgba(130, 145, 162, 0.3);
+    }
+  }
+}

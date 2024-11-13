@@ -1,0 +1,23 @@
+.button {
+    all: unset;
+    width: 100%;
+    color: #fff;
+    background: #000;
+    font-size: 15px;
+    text-transform: uppercase;
+    cursor: pointer;
+    height: 50px;
+    border-radius: 4px;
+    border: 1px solid #000;
+    transition: .2s ease-in-out background;
+    font-weight: 600;
+
+    &:hover {
+        background: #202020;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: .7;
+    }
+}
