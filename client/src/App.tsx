@@ -7,6 +7,7 @@ import { persistor, store } from "./redux/store";
 import Resume from "./pages/applicants/Resume";
 import ApplicantDashbaord from "./pages/applicants/Dashboard";
 import { PersistGate } from "redux-persist/integration/react";
+import Explore from "./pages/applicants/Explore";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
               path={ROUTES_APPLICANT.JOBS}
               element={<ApplicantDashbaord />}
             />
+            <Route path={ROUTES_APPLICANT.EXPLORE} element={<Explore />} />
           </Routes>
         </>
       </PersistGate>

@@ -23,7 +23,7 @@ const TopElement: React.FC<ITopElement> = ({ userType, pageName }) => {
           />
         </figure>
         <p>
-          {applicant.firstName} {applicant.firstName}
+          {applicant.firstName} {applicant.lastName}
         </p>
       </div>
     </div>
