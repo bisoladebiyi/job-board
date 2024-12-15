@@ -5,14 +5,15 @@ import { Link } from "react-router-dom";
 
 interface ILogo {
   userType?: "applicant" | "employer";
+  color?: string
 }
 
-const Logo: React.FC<ILogo> = ({ userType }) => {
+const Logo: React.FC<ILogo> = ({ userType, color }) => {
   return (
     <Link to={"/"}>
-      <div className={style.logo}>
+      <div className={style.logo} style={color ? {color} : {}}>
         <p>JB</p>
-        <span>{userType === "employer" && <FaSuitcase />}</span>
+        <span>{userType === "employer" && <FaSuitcase color={color} />}</span>
       </div>
     </Link>
   );

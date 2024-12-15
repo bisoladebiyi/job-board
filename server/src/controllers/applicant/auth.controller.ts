@@ -14,7 +14,7 @@ export const applicantSignUp = async (req: Request, res: Response) => {
     try {
         const applicant = await Applicant.create(req.body)
         const token = createToken(applicant.id);
-        res.status(200).json({ token, firstName: applicant.firstName, lastName: applicant.lastName, occupation: applicant.occupation, email: applicant.email })
+        res.status(200).json({ token, id: applicant.id, firstName: applicant.firstName, lastName: applicant.lastName, occupation: applicant.occupation, email: applicant.email })
     } catch (error) {
         res.status(400).json(error.message);
     }
@@ -35,7 +35,7 @@ export const applicantLogin = async (req: Request, res: Response) => {
             return;
         }
         const token = createToken(applicant.id);
-        res.status(200).json({ token, firstName: applicant.firstName, lastName: applicant.lastName, occupation: applicant.occupation, email: applicant.email })
+        res.status(200).json({ token, id: applicant.id, firstName: applicant.firstName, lastName: applicant.lastName, occupation: applicant.occupation, email: applicant.email })
     } catch (error) {
         res.status(500).json({ error: error.message || 'Server error' });
     }

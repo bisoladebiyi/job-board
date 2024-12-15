@@ -7,5 +7,7 @@ export const EMPLOYER_API_ROUTES = {
 export const APPLICANT_API_ROUTES = {
     LOGIN: '/api/auth/login',
     LOGOUT: '/api/auth/logout',
-    SIGNUP: '/api/auth/signup'
+    SIGNUP: '/api/auth/signup',
+    UPLOAD_RESUME: '/api/applicant/upload-resume',
+    GET_RESUME: '/api/applicant/get-resume',
 }

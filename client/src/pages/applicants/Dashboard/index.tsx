@@ -1,8 +1,12 @@
 import React from 'react'
+import ApplicantLayout from '../../../components/Layout/applicant'
+import { ROUTES_APPLICANT } from '../../../utils/constants'
 
 const ApplicantDashbaord = () => {
   return (
-    <div>ApplicantDashbaord</div>
+    <ApplicantLayout activePage={ROUTES_APPLICANT.JOBS}>
+    <div>Dashboard</div>
+  </ApplicantLayout>
   )
 }
 

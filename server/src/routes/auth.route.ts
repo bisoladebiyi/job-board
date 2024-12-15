@@ -7,5 +7,5 @@ export const router = express.Router();
 router.post('/login?type=employer', employerLogin)
 router.post('/login', applicantLogin)
 
-router.post('/sign-up?type=employer', employerSignUp)
-router.post('/sign-up', applicantSignUp)
+router.post('/signup?type=employer', employerSignUp)
+router.post('/signup', applicantSignUp)

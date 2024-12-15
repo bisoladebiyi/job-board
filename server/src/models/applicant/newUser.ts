@@ -28,6 +28,15 @@ const userSchema = new Schema<AIUser>({
     isEmployer: {
         type: Boolean,
         required: true
+    },
+    resume: {
+        type: [Schema.Types.Mixed]
+    },
+    appliedTo : {
+        type: [String]
+    },
+    savedJobs: {
+        type: [String]
     }
 })
 
