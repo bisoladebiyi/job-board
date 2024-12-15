@@ -3,6 +3,8 @@ import dotenv from "dotenv"
 import cors from "cors"
 import mongoose from "mongoose";
 import { router as AuthRouter } from "./routes/auth.route";
+import { router as ApplicantDataRouter } from "./routes/applicant/applicantData.route";
+import { router as ApplicantJobsRouter } from "./routes/applicant/applicantJobs.route";
 
 const app = express();
 
@@ -18,6 +20,8 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/auth', AuthRouter)
+app.use('/api/applicant', ApplicantDataRouter)
+app.use('/api/applicant/jobs', ApplicantJobsRouter)
 
 mongoose
     .connect(process.env.MONGO_URI)

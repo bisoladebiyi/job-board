@@ -8,5 +8,8 @@ export const ROUTES_APPLICANT = {
     LOGIN: "/applicant/login",
     SIGNUP: "/applicant/signup",
     DASHBOARD: "/applicant/dashboard",
-    PROFILE: "/applicant/profile"
+    SETTINGS: "/applicant/settings",
+    JOBS: "/applicant/my-jobs",
+    EXPLORE: "/applicant/explore",
+    RESUME: "/applicant/resume"
 }

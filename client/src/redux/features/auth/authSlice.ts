@@ -15,14 +15,13 @@ interface SignupRequest {
     isEmployer: boolean;
     email: string;
     password: string;
+    occupation?: string
 }
 
 
 export const auth = createApi({
     baseQuery: fetchBaseQuery({
-        baseUrl: import.meta.env.VITE_API_URL, headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`
-        }
+        baseUrl: import.meta.env.VITE_API_URL
     }),
     endpoints: (builder) => ({
         employerLogin: builder.mutation<unknown, LoginRequest>({

@@ -14,7 +14,7 @@ export const employerSignUp = async (req: Request, res: Response) => {
     try {
         const employer = await Employer.create(req.body)
         const token = createToken(employer.id);
-        res.status(200).json({ token, companyName: employer.companyName, companyWebsite: employer.companyWebsite, email: employer.email })
+        res.status(200).json({ token, id:employer.id, companyName: employer.companyName, companyWebsite: employer.companyWebsite, email: employer.email })
     } catch (error) {
         res.status(400).json(error.message);
     }
@@ -35,7 +35,7 @@ export const employerLogin = async (req: Request, res: Response) => {
             return;
         }
         const token = createToken(employer.id);
-        res.status(200).json({ token, companyName: employer.companyName, companyWebsite: employer.companyWebsite, email: employer.email })
+        res.status(200).json({ token, id:employer.id, companyName: employer.companyName, companyWebsite: employer.companyWebsite, email: employer.email })
     } catch (error) {
         res.status(500).json({ error: error.message || 'Server error' });
     }

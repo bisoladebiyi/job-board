@@ -8,4 +8,7 @@ export interface AIUser extends Document {
     email: string;
     password: string;
     comparePassword(candidatePassword: string): Promise<boolean>;
+    resume?: any;
+    appliedTo?: string[],
+    savedJobs?: string[]
 }
