@@ -59,6 +59,7 @@ const SignUp: React.FC<Omit<IAuth, "pageType">> = ({ userType }) => {
 
     try {
       if (userType === "applicant") {
+        console.log("hey");
         await applicantSignup({
           firstName: signUpData.firstName,
           lastName: signUpData.lastName,

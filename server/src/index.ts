@@ -5,6 +5,9 @@ import mongoose from "mongoose";
 import { router as AuthRouter } from "./routes/auth.route";
 import { router as ApplicantDataRouter } from "./routes/applicant/applicantData.route";
 import { router as ApplicantJobsRouter } from "./routes/applicant/applicantJobs.route";
+import { router as JobsRouter } from "./routes/jobs.route";
+import { router as EmployerJobsRouter } from "./routes/employer/job.route";
+import { router as EmployerAppRouter } from "./routes/employer/application.route";
 
 const app = express();
 
@@ -22,6 +25,9 @@ app.use((req, res, next) => {
 app.use('/api/auth', AuthRouter)
 app.use('/api/applicant', ApplicantDataRouter)
 app.use('/api/applicant/jobs', ApplicantJobsRouter)
+app.use('/api/jobs', JobsRouter)
+app.use('/api/employer/jobs', EmployerJobsRouter)
+app.use('api/applications', EmployerAppRouter)
 
 mongoose
     .connect(process.env.MONGO_URI)

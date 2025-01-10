@@ -23,7 +23,9 @@ const TopElement: React.FC<ITopElement> = ({ userType, pageName }) => {
           />
         </figure>
         <p>
-          {applicant.firstName} {applicant.firstName}
+          {userType === "employer"
+            ? `${employer.email}`
+            : `${applicant.firstName} ${applicant.lastName}`}
         </p>
       </div>
     </div>
