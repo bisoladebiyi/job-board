@@ -19,5 +19,9 @@
     &:focus {
       box-shadow: 0 0 0 2px #555d6674, 0 0 0 5px rgba(130, 145, 162, 0.3);
     }
+
+    &::placeholder {
+      font-style: italic;
+    }
   }
 }

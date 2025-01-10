@@ -4,11 +4,11 @@ import Logo from "../Logo";
 import style from "./Layout.module.scss";
 import { Link } from "react-router-dom";
 
-const SideNav = ({ sideNavItems, activePage }: any) => {
+const SideNav = ({ sideNavItems, activePage, userType }: any) => {
   return (
     <div className={style.sideNav}>
       <div>
-        <Logo color="#fff" />
+        <Logo color="#fff" userType={userType} />
       </div>
       <ul>
         {sideNavItems.map((item: any) => (

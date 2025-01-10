@@ -1,7 +1,10 @@
 export const ROUTES_EMPLOYER = {
     LOGIN: "/employer/login",
     SIGNUP: "/employer/signup",
-    DASHBOARD: "/employer/dashboard"
+    DASHBOARD: "/employer/dashboard",
+    CREATE: "/employer/create",
+    EDIT: "/employer/edit",
+    APPLICATIONS: "/employer/applications"
 }
 
 export const ROUTES_APPLICANT = {

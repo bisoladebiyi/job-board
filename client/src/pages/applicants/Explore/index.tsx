@@ -2,12 +2,20 @@
 import React, { useState } from "react";
 import ApplicantLayout from "../../../components/Layout/applicant";
 import { dummyJobs, ROUTES_APPLICANT } from "../../../utils/constants";
-import { FaRegHeart } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
 import dashboardStyle from "../Dashboard/Dashboard.module.scss";
 import style from "./Explore.module.scss";
 import JobDetails from "../../../components/JobDetails";
 import Select from "react-select";
+import {
+  useApplyMutation,
+  useGetAppliedJobsQuery,
+  useGetJobsQuery,
+  useGetSavedJobsQuery,
+  useSaveJobMutation,
+} from "../../../redux/features/user/applicantApiSlice";
+import JobCard from "../../../components/JobCard";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
 
 const customStyles = {
   container: (provided: any) => ({
@@ -32,6 +40,43 @@ const dateOptions = [
 const Explore = () => {
   const [jobDetails, setJobDetails] = useState<any>(dummyJobs[0]);
   const [showDetails, setShowDetails] = useState(false);
+  const applicant = useSelector((state: RootState) => state.applicant);
+  const { refetch: refetchApplied, data: applied } = useGetAppliedJobsQuery(
+    applicant.id
+  );
+  const { data: saved, refetch: refetchSaved } = useGetSavedJobsQuery(
+    applicant.id
+  );
+  const { data: jobs, refetch: refetchJobs } = useGetJobsQuery({});
+  const [saveJob] = useSaveJobMutation();
+  const [apply] = useApplyMutation();
+
+  const handleSaveJob = (e: any, jobId: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    saveJob({ jobId, userId: applicant.id })
+      .unwrap()
+      .then((res) => {
+        refetchJobs()
+          .then(() => {
+            refetchSaved();
+          })
+          .then(() => {
+            alert(res.message);
+          });
+      });
+  };
+
+  const handleApplication = (e: any, jobId: string) => {
+    e.preventDefault();
+
+    apply({ jobId, userId: applicant.id })
+      .unwrap()
+      .then(() => {
+        refetchApplied();
+      });
+  };
 
   return (
     <ApplicantLayout activePage={ROUTES_APPLICANT.EXPLORE} pageName="Explore">
@@ -68,42 +113,26 @@ const Explore = () => {
           {/* body  */}
 
           <div className={dashboardStyle.dashboard_body}>
-            {dummyJobs.map((job) => (
-              <div
-                className={dashboardStyle.dashboard_card}
-                onClick={() => {
-                  setJobDetails(job);
-                  setShowDetails(true);
-                }}
-              >
-                <h4 className={dashboardStyle.dashboard_card_role}>
-                  {job.role}
-                </h4>
-                <p className={dashboardStyle.dashboard_card_name}>
-                  {job.company}
-                </p>
-                <p className={dashboardStyle.dashboard_card_name}>
-                  {job.location}
-                </p>
-                <p className={dashboardStyle.dashboard_card_desc}>{job.desc}</p>
-
-                <div>
-                  <button>
-                    {job.isSaved ? (
-                      <FaHeart color="#F72C5B" size={20} />
-                    ) : (
-                      <FaRegHeart color="#F72C5B" size={20} />
-                    )}
-                  </button>
-                  <button>See more</button>
-                </div>
-              </div>
+            {jobs?.map((job: any) => (
+              <JobCard
+                key={job._id}
+                job={job}
+                isSaved={saved.map((jb: any) => jb._id).includes(job._id)}
+                setJobDetails={setJobDetails}
+                setShowDetails={setShowDetails}
+                handleSaveJob={handleSaveJob}
+              />
             ))}
           </div>
         </div>
       </div>
       {showDetails && (
-        <JobDetails jobDetails={jobDetails} setShowDetails={setShowDetails} />
+        <JobDetails
+          jobDetails={jobDetails}
+          applied={applied}
+          setShowDetails={setShowDetails}
+          handleApplication={handleApplication}
+        />
       )}
     </ApplicantLayout>
   );

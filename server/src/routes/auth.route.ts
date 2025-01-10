@@ -4,8 +4,22 @@ import express from 'express';
 
 export const router = express.Router();
 
-router.post('/login?type=employer', employerLogin)
-router.post('/login', applicantLogin)
+router.post('/login', (req, res) => {
+    const type = req.query.type
 
-router.post('/signup?type=employer', employerSignUp)
-router.post('/signup', applicantSignUp)
+    if (type === "employer") {
+        employerLogin(req, res)
+    } else {
+        applicantLogin(req, res)
+    }
+})
+
+router.post('/signup', (req, res) => {
+    const type = req.query.type
+
+    if (type === "employer") {
+        employerSignUp(req, res)
+    } else {
+        applicantSignUp(req, res)
+    }
+})
